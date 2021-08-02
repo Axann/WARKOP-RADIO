@@ -31,6 +31,7 @@ client.on('ready', async () => {
   const status = [
     `Official Warkop Radio`,
     `24/7 RADIO ON WARKOP`,
+    `ENGLISH WARKOP RADIO`,
     `${client.users.cache.size} users`,
     ]
   setInterval(() => {

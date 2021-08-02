@@ -18,7 +18,11 @@ const client2 = new discord.Client();
 const client3 = new discord.Client();
 const client4 = new discord.Client();
 
-let broadcast = null;
+let broadcast1 = null;
+let broadcast2 = null;
+let broadcast3 = null;
+let broadcast4 = null;
+
 let interval = null;
 
 
@@ -51,19 +55,19 @@ client1.on('ready', async () => {
   }
 
   
-  broadcast = client1.voice.createBroadcast();
-  let stream = ytdl(url1);
-  stream.on('error', console.error);
-  broadcast.play(stream);
-  
-  
+  broadcast1 = client1.voice.createBroadcast();
+  let stream1 = ytdl(url1);
+  stream1.on('error', console.error);
+  broadcast1.play(stream1);
+
+
   if (!interval) {
     interval = setInterval(async function () {
       try {
-        if (stream && !stream.ended) stream.destroy();
-        stream = ytdl(url1, { highWaterMark: 100 << 150 });
-        stream.on('error', console.error);
-        broadcast.play(stream);
+        if (stream1 && !stream1.ended) stream1.destroy();
+        stream1 = ytdl(url1, { highWaterMark: 100 << 150 });
+        stream1.on('error', console.error);
+        broadcast1.play(stream1);
       } catch (e) { return }
     }, 1800000)
   }
@@ -71,7 +75,7 @@ client1.on('ready', async () => {
   
   try {
     const connection = await channel.join();
-    connection.play(broadcast);
+    connection.play(broadcast1);
   } catch (error) {
     console.error(error);
   }
@@ -86,7 +90,7 @@ setInterval(async function () {
     
     try {
       const connection = await channel.join();
-      connection.play(broadcast);
+      connection.play(broadcast1);
     } catch (error) {
       console.error(error);
     }
@@ -124,19 +128,19 @@ client2.on('ready', async () => {
   }
 
   
-  broadcast = client2.voice.createBroadcast();
-  let stream = ytdl(url2);
-  stream.on('error', console.error);
-  broadcast.play(stream);
+  broadcast2 = client2.voice.createBroadcast();
+  let stream2 = ytdl(url2);
+  stream2.on('error', console.error);
+  broadcast2.play(stream2);
   
   
   if (!interval) {
     interval = setInterval(async function () {
       try {
-        if (stream && !stream.ended) stream.destroy();
-        stream = ytdl(url2, { highWaterMark: 100 << 150 });
-        stream.on('error', console.error);
-        broadcast.play(stream);
+        if (stream2 && !stream2.ended) stream2.destroy();
+        stream2 = ytdl(url2, { highWaterMark: 100 << 150 });
+        stream2.on('error', console.error);
+        broadcast2.play(stream2);
       } catch (e) { return }
     }, 1800000)
   }
@@ -144,7 +148,7 @@ client2.on('ready', async () => {
   
   try {
     const connection = await channel.join();
-    connection.play(broadcast);
+    connection.play(broadcast2);
   } catch (error) {
     console.error(error);
   }
@@ -159,7 +163,7 @@ setInterval(async function () {
     
     try {
       const connection = await channel.join();
-      connection.play(broadcast);
+      connection.play(broadcast2);
     } catch (error) {
       console.error(error);
     }
@@ -197,19 +201,19 @@ client3.on('ready', async () => {
   }
 
   
-  broadcast = client3.voice.createBroadcast();
-  let stream = ytdl(url3);
-  stream.on('error', console.error);
-  broadcast.play(stream);
+  broadcast3 = client3.voice.createBroadcast();
+  let stream3 = ytdl(url3);
+  stream3.on('error', console.error);
+  broadcast3.play(stream3);
   
   
   if (!interval) {
     interval = setInterval(async function () {
       try {
-        if (stream && !stream.ended) stream.destroy();
-        stream = ytdl(url3, { highWaterMark: 100 << 150 });
-        stream.on('error', console.error);
-        broadcast.play(stream);
+        if (stream3 && !stream3.ended) stream3.destroy();
+        stream3 = ytdl(url3, { highWaterMark: 100 << 150 });
+        stream3.on('error', console.error);
+        broadcast3.play(stream3);
       } catch (e) { return }
     }, 1800000)
   }
@@ -217,7 +221,7 @@ client3.on('ready', async () => {
   
   try {
     const connection = await channel.join();
-    connection.play(broadcast);
+    connection.play(broadcast3);
   } catch (error) {
     console.error(error);
   }
@@ -232,7 +236,7 @@ setInterval(async function () {
     
     try {
       const connection = await channel.join();
-      connection.play(broadcast);
+      connection.play(broadcast3);
     } catch (error) {
       console.error(error);
     }
@@ -271,19 +275,19 @@ client4.on('ready', async () => {
   }
 
   
-  broadcast = client4.voice.createBroadcast();
-  let stream = ytdl(url4);
-  stream.on('error', console.error);
-  broadcast.play(stream);
+  broadcast4 = client4.voice.createBroadcast();
+  let stream4 = ytdl(url4);
+  stream4.on('error', console.error);
+  broadcast4.play(stream4);
   
   
   if (!interval) {
     interval = setInterval(async function () {
       try {
-        if (stream && !stream.ended) stream.destroy();
-        stream = ytdl(url4, { highWaterMark: 100 << 150 });
-        stream.on('error', console.error);
-        broadcast.play(stream);
+        if (stream4 && !stream4.ended) stream4.destroy();
+        stream4 = ytdl(url4, { highWaterMark: 100 << 150 });
+        stream4.on('error', console.error);
+        broadcast4.play(stream4);
       } catch (e) { return }
     }, 1800000)
   }
@@ -291,7 +295,7 @@ client4.on('ready', async () => {
   
   try {
     const connection = await channel.join();
-    connection.play(broadcast);
+    connection.play(broadcast4);
   } catch (error) {
     console.error(error);
   }
@@ -306,7 +310,7 @@ setInterval(async function () {
     
     try {
       const connection = await channel.join();
-      connection.play(broadcast);
+      connection.play(broadcast4);
     } catch (error) {
       console.error(error);
     }

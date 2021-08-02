@@ -7,6 +7,10 @@ const client = new discord.Client();
 let broadcast = null;
 let interval = null;
 
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+
 if (!token) {
   console.error("token invalid cokkk");
   process.exit(1);
@@ -18,19 +22,28 @@ if (!token) {
   process.exit(1);
 }
 
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+
 client.on('ready', async () => {
   
   const status = [
-    ` | ${client.guilds.cache.size} servers`,
-    ` | ${client.channels.cache.size} channels`,
-    ` | ${client.users.cache.size} users`,
+    `Official Warkop Radio`,
+    `24/7 RADIO ON WARKOP`,
+    `${client.users.cache.size} users`,
     ]
   setInterval(() => {
-    client.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "WATCHING"})
+    client.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
   }, 2000)
+  
+  
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+  
   
   let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId)
 
+  
   if (!channel) {
     console.error("channel gaada pantek");
     return process.exit(1);
@@ -39,10 +52,16 @@ client.on('ready', async () => {
     return process.exit(1);
   }
 
+  
   broadcast = client.voice.createBroadcast();
   let stream = ytdl(url);
   stream.on('error', console.error);
   broadcast.play(stream);
+  
+  
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+  
   if (!interval) {
     interval = setInterval(async function () {
       try {
@@ -53,6 +72,8 @@ client.on('ready', async () => {
       } catch (e) { return }
     }, 1800000)
   }
+  
+  
   try {
     const connection = await channel.join();
     connection.play(broadcast);
@@ -61,10 +82,16 @@ client.on('ready', async () => {
   }
 });
 
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+
 setInterval(async function () {
   if (!client.voice.connections.size) {
     let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId);
     if (!channel) return;
+    
+    
     try {
       const connection = await channel.join();
       connection.play(broadcast);
@@ -74,6 +101,9 @@ setInterval(async function () {
   }
 }, 20000);
 
-client.login(token)
 
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+
+client.login(token)
 process.on('unhandledRejection', console.error);

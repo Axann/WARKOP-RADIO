@@ -1,4 +1,12 @@
 {
-  "id1": '',
-  "url1": ''
+  "id1": '791946785265418250', //music 1
+  "id2": '791946781315301396', //music2
+  "id3": '792648582904938516', //music3
+  "id4": '792778000910516224', //music4
+
+  "url1": 'https://youtu.be/gnyW6uaUgk4', // hits radio (english)
+  "url2": 'https://youtu.be/GgrocEkkB_g', // indonesia radio
+  "url3": 'https://youtu.be/2atQnvunGCo', // lofi radio
+  "url4"; 'https://youtu.be/F4aby5WN1Rw'  // kpop radio
+  
 }

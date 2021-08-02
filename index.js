@@ -1,27 +1,15 @@
 const discord = require ("discord.js")
 const ytdl = require ("ytdl-core")
 
-const { url, channelId, token } = process.env
+const { id1, id2, id3, id4 } = require ("./config.json")
+const { url1, url2, url3, url4 } = require ("./config.json")
+const { token1, token2, token3, token4 } = process.env
 
 const client = new discord.Client();
+//const client2 = new discord.Client();
 
 let broadcast = null;
 let interval = null;
-
-
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
-
-
-if (!token) {
-  console.error("token invalid cokkk");
-  process.exit(1);
-} else if (!channelId || Number(channelId) == NaN) {
-  console.log("id invalid cokk");
-  process.exit(1);
-} else if (!ytdl.validateURL(url)) {
-  console.log("link invalid cok");
-  process.exit(1);
-}
 
 
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//
@@ -40,7 +28,7 @@ client.on('ready', async () => {
   }, 2000)
     
   
-  let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId)
+  let channel = client.channels.cache.get(id1) || await client.channels.fetch(id1)
 
   
   if (!channel) {
@@ -53,7 +41,7 @@ client.on('ready', async () => {
 
   
   broadcast = client.voice.createBroadcast();
-  let stream = ytdl(url);
+  let stream = ytdl(url1);
   stream.on('error', console.error);
   broadcast.play(stream);
   
@@ -62,7 +50,7 @@ client.on('ready', async () => {
     interval = setInterval(async function () {
       try {
         if (stream && !stream.ended) stream.destroy();
-        stream = ytdl(url, { highWaterMark: 100 << 150 });
+        stream = ytdl(url1, { highWaterMark: 100 << 150 });
         stream.on('error', console.error);
         broadcast.play(stream);
       } catch (e) { return }
@@ -81,7 +69,7 @@ client.on('ready', async () => {
 
 setInterval(async function () {
   if (!client.voice.connections.size) {
-    let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId);
+    let channel = client.channels.cache.get(id1) || await client.channels.fetch(id1);
     if (!channel) return;
     
     
@@ -94,12 +82,11 @@ setInterval(async function () {
   }
 }, 20000);
 
-client.login(token)
+client.login(token1)
 
 
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
-//const client2 = new discord.Client();
 
 
 

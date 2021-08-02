@@ -1,11 +1,19 @@
 const discord = require ("discord.js")
 const ytdl = require ("ytdl-core")
 
-const { id1, id2, id3, id4 } = require ("./config.json")
-const { url1, url2, url3, url4 } = require ("./config.json")
+const id1 = "791946785265418250" //music 1
+const id2 = "791946781315301396" //music 2
+const id3 = "792648582904938516" //music 3
+const id4 = "792778000910516224" //music 4
+
+const url1 = 'https://youtu.be/gnyW6uaUgk4' //english
+const url2 = 'https://youtu.be/GgrocEkkB_g' //indo
+const url3 = 'https://youtu.be/2atQnvunGCo' //lofi
+const url4 = 'https://youtu.be/F4aby5WN1Rw' //kpop
+
 const { token1, token2, token3, token4 } = process.env
 
-const client = new discord.Client();
+const client1 = new discord.Client();
 //const client2 = new discord.Client();
 
 let broadcast = null;
@@ -15,20 +23,20 @@ let interval = null;
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
-client.on('ready', async () => {
+client1.on('ready', async () => {
   
   const status = [
     `Official Warkop Radio`,
     `24/7 RADIO ON WARKOP`,
     `ENGLISH WARKOP RADIO`,
-    `${client.users.cache.size} users`,
+    `${client1.users.cache.size} users`,
     ]
   setInterval(() => {
-    client.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
+    client1.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
   }, 2000)
     
   
-  let channel = client.channels.cache.get(id1) || await client.channels.fetch(id1)
+  let channel = client1.channels.cache.get(id1) || await client1.channels.fetch(id1)
 
   
   if (!channel) {
@@ -40,7 +48,7 @@ client.on('ready', async () => {
   }
 
   
-  broadcast = client.voice.createBroadcast();
+  broadcast = client1.voice.createBroadcast();
   let stream = ytdl(url1);
   stream.on('error', console.error);
   broadcast.play(stream);
@@ -68,8 +76,8 @@ client.on('ready', async () => {
 
 
 setInterval(async function () {
-  if (!client.voice.connections.size) {
-    let channel = client.channels.cache.get(id1) || await client.channels.fetch(id1);
+  if (!client1.voice.connections.size) {
+    let channel = client1.channels.cache.get(id1) || await client1.channels.fetch(id1);
     if (!channel) return;
     
     
@@ -82,7 +90,7 @@ setInterval(async function () {
   }
 }, 20000);
 
-client.login(token1)
+client1.login(token1)
 
 
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//

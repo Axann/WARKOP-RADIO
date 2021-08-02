@@ -4,8 +4,6 @@ const ytdl = require ("ytdl-core")
 const { url, channelId, token } = process.env
 
 const client = new discord.Client();
-//const client2 = new discord.Client();
-
 
 let broadcast = null;
 let interval = null;
@@ -24,6 +22,9 @@ if (!token) {
   console.log("link invalid cok");
   process.exit(1);
 }
+
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
 client.on('ready', async () => {
@@ -93,8 +94,17 @@ setInterval(async function () {
   }
 }, 20000);
 
-
-
-
 client.login(token)
+
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+//const client2 = new discord.Client();
+
+
+
+
+
+
+
 process.on('unhandledRejection', console.error);

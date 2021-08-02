@@ -14,7 +14,9 @@ const url4 = 'https://youtu.be/F4aby5WN1Rw' //kpop
 const { token1, token2, token3, token4 } = process.env
 
 const client1 = new discord.Client();
-//const client2 = new discord.Client();
+const client2 = new discord.Client();
+const client3 = new discord.Client();
+const client4 = new discord.Client();
 
 let broadcast = null;
 let interval = null;
@@ -96,6 +98,150 @@ client1.login(token1)
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
+client2.on('ready', async () => {
+  
+  const status = [
+    `Official Warkop Radio`,
+    `24/7 RADIO ON WARKOP`,
+    `INDONESIA WARKOP RADIO`,
+    `${client2.users.cache.size} users`,
+    ]
+  setInterval(() => {
+    client2.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
+  }, 2000)
+    
+  
+  let channel = client2.channels.cache.get(id2) || await client2.channels.fetch(id2)
+
+  
+  if (!channel) {
+    console.error("channel gaada pantek");
+    return process.exit(1);
+  } else if (channel.type !== "voice") {
+    console.error("voice gaada pantek");
+    return process.exit(1);
+  }
+
+  
+  broadcast = client2.voice.createBroadcast();
+  let stream = ytdl(url2);
+  stream.on('error', console.error);
+  broadcast.play(stream);
+  
+  
+  if (!interval) {
+    interval = setInterval(async function () {
+      try {
+        if (stream && !stream.ended) stream.destroy();
+        stream = ytdl(url2, { highWaterMark: 100 << 150 });
+        stream.on('error', console.error);
+        broadcast.play(stream);
+      } catch (e) { return }
+    }, 1800000)
+  }
+  
+  
+  try {
+    const connection = await channel.join();
+    connection.play(broadcast);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+setInterval(async function () {
+  if (!client2.voice.connections.size) {
+    let channel = client2.channels.cache.get(id2) || await client2.channels.fetch(id2);
+    if (!channel) return;
+    
+    
+    try {
+      const connection = await channel.join();
+      connection.play(broadcast);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}, 20000);
+
+client2.login(token2)
+
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
+
+
+client3.on('ready', async () => {
+  
+  const status = [
+    `Official Warkop Radio`,
+    `24/7 RADIO ON WARKOP`,
+    `INDONESIA WARKOP RADIO`,
+    `${client3.users.cache.size} users`,
+    ]
+  setInterval(() => {
+    client3.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
+  }, 2000)
+    
+  
+  let channel = client3.channels.cache.get(id3) || await client3.channels.fetch(id3)
+
+  
+  if (!channel) {
+    console.error("channel gaada pantek");
+    return process.exit(1);
+  } else if (channel.type !== "voice") {
+    console.error("voice gaada pantek");
+    return process.exit(1);
+  }
+
+  
+  broadcast = client3.voice.createBroadcast();
+  let stream = ytdl(url3);
+  stream.on('error', console.error);
+  broadcast.play(stream);
+  
+  
+  if (!interval) {
+    interval = setInterval(async function () {
+      try {
+        if (stream && !stream.ended) stream.destroy();
+        stream = ytdl(url3, { highWaterMark: 100 << 150 });
+        stream.on('error', console.error);
+        broadcast.play(stream);
+      } catch (e) { return }
+    }, 1800000)
+  }
+  
+  
+  try {
+    const connection = await channel.join();
+    connection.play(broadcast);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+setInterval(async function () {
+  if (!client3.voice.connections.size) {
+    let channel = client3.channels.cache.get(id3) || await client3.channels.fetch(id3);
+    if (!channel) return;
+    
+    
+    try {
+      const connection = await channel.join();
+      connection.play(broadcast);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}, 20000);
+
+client3.login(token3)
+
+
+//** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
 

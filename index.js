@@ -2,7 +2,10 @@ const discord = require ("discord.js")
 const ytdl = require ("ytdl-core")
 
 const { url, channelId, token } = process.env
+
 const client = new discord.Client();
+//const client2 = new discord.Client();
+
 
 let broadcast = null;
 let interval = null;
@@ -23,9 +26,6 @@ if (!token) {
 }
 
 
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
-
-
 client.on('ready', async () => {
   
   const status = [
@@ -37,10 +37,7 @@ client.on('ready', async () => {
   setInterval(() => {
     client.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
   }, 2000)
-  
-  
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
-  
+    
   
   let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId)
 
@@ -59,9 +56,6 @@ client.on('ready', async () => {
   stream.on('error', console.error);
   broadcast.play(stream);
   
-  
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
-
   
   if (!interval) {
     interval = setInterval(async function () {
@@ -84,9 +78,6 @@ client.on('ready', async () => {
 });
 
 
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
-
-
 setInterval(async function () {
   if (!client.voice.connections.size) {
     let channel = client.channels.cache.get(channelId) || await client.channels.fetch(channelId);
@@ -103,7 +94,6 @@ setInterval(async function () {
 }, 20000);
 
 
-//** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
 client.login(token)

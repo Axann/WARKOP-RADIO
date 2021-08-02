@@ -244,7 +244,74 @@ client3.login(token3)
 //** -------------------------------- ~ AXAN ~ -------------------------------- **//
 
 
+client4.on('ready', async () => {
+  
+  const status = [
+    `Official Warkop Radio`,
+    `24/7 RADIO ON WARKOP`,
+    `INDONESIA WARKOP RADIO`,
+    `${client4.users.cache.size} users`,
+    ]
+  setInterval(() => {
+    client4.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
+  }, 2000)
+    
+  
+  let channel = client4.channels.cache.get(id4) || await client4.channels.fetch(id4)
 
+  
+  if (!channel) {
+    console.error("channel gaada pantek");
+    return process.exit(1);
+  } else if (channel.type !== "voice") {
+    console.error("voice gaada pantek");
+    return process.exit(1);
+  }
+
+  
+  broadcast = client4.voice.createBroadcast();
+  let stream = ytdl(url4);
+  stream.on('error', console.error);
+  broadcast.play(stream);
+  
+  
+  if (!interval) {
+    interval = setInterval(async function () {
+      try {
+        if (stream && !stream.ended) stream.destroy();
+        stream = ytdl(url4, { highWaterMark: 100 << 150 });
+        stream.on('error', console.error);
+        broadcast.play(stream);
+      } catch (e) { return }
+    }, 1800000)
+  }
+  
+  
+  try {
+    const connection = await channel.join();
+    connection.play(broadcast);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+setInterval(async function () {
+  if (!client4.voice.connections.size) {
+    let channel = client4.channels.cache.get(id4) || await client4.channels.fetch(id4);
+    if (!channel) return;
+    
+    
+    try {
+      const connection = await channel.join();
+      connection.play(broadcast);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}, 20000);
+
+client4.login(token4)
 
 
 

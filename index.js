@@ -6,10 +6,10 @@ const id2 = "791946781315301396" //music 2
 const id3 = "792648582904938516" //music 3
 const id4 = "792778000910516224" //music 4
 
-const url1 = 'https://youtu.be/gnyW6uaUgk4' //english
-const url2 = 'https://youtu.be/GgrocEkkB_g' //indo
-const url3 = 'https://youtu.be/2atQnvunGCo' //lofi
-const url4 = 'https://youtu.be/F4aby5WN1Rw' //kpop
+const url1 = ('https://youtu.be/gnyW6uaUgk4') //english
+const url2 = ('https://youtu.be/GgrocEkkB_g') //indo
+const url3 = ('https://youtu.be/2atQnvunGCo') //lofi
+const url4 = ('https://youtu.be/F4aby5WN1Rw') //kpop
 
 const { token1, token2, token3, token4 } = process.env
 
@@ -33,6 +33,7 @@ client1.on('ready', async () => {
     `ENGLISH WARKOP RADIO`,
     `${client1.users.cache.size} users`,
     ]
+  
   setInterval(() => {
     client1.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
   }, 2000)
@@ -176,7 +177,7 @@ client3.on('ready', async () => {
   const status = [
     `Official Warkop Radio`,
     `24/7 RADIO ON WARKOP`,
-    `INDONESIA WARKOP RADIO`,
+    `LOFI WARKOP RADIO`,
     `${client3.users.cache.size} users`,
     ]
   setInterval(() => {
@@ -249,9 +250,10 @@ client4.on('ready', async () => {
   const status = [
     `Official Warkop Radio`,
     `24/7 RADIO ON WARKOP`,
-    `INDONESIA WARKOP RADIO`,
+    `KPOP WARKOP RADIO`,
     `${client4.users.cache.size} users`,
     ]
+  
   setInterval(() => {
     client4.user.setActivity(status[Math.floor(Math.random() * status.length)], {type : "LISTENING"})
   }, 2000)
